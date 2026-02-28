@@ -73,6 +73,10 @@ async function validateTemplate(name) {
   const agentNames = new Set(agentFiles.filter(f => f.endsWith('.agent.yaml')).map(f => f.slice(0, -'.agent.yaml'.length)));
   const contractNames = new Set(contractFiles.filter(f => f.endsWith('.contract.yaml')).map(f => f.slice(0, -'.contract.yaml'.length)));
   const toolPlugins = new Set(toolFiles.filter(f => f.endsWith('.tool.yaml')).map(f => f.slice(0, -'.tool.yaml'.length)));
+  const dependencyAgents = new Set([
+    ...(meta.dependencies?.agents?.required ?? []),
+    ...(meta.dependencies?.agents?.recommended ?? []),
+  ]);
 
   // --- YAML files: one level of subdirectories in project/ ---
   const subdirs = await ls(projectDir);
@@ -112,7 +116,9 @@ async function validateTemplate(name) {
             if (!stage || typeof stage !== 'object' || Array.isArray(stage)) continue;
             const { agents, contracts } = collectStageRefs(stage);
             for (const a of agents) {
-              if (!agentNames.has(a)) errors.push(`${rel}: agent "${a}" not found in project/agents/`);
+              if (!agentNames.has(a) && !dependencyAgents.has(a)) {
+                errors.push(`${rel}: agent "${a}" not found in project/agents/ or declared in dependencies`);
+              }
             }
             for (const c of contracts) {
               if (!contractNames.has(c)) errors.push(`${rel}: contract "${c}" not found in project/contracts/`);
