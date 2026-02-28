@@ -559,7 +559,59 @@ Create a new branch after PR 1 merges (or branch from PR 1 branch):
 git checkout -b feat/stu-201-update-templates
 ```
 
-### Task 14: Update `templates/software` metadata + remove embedded files
+### Task 14: Update `validate-templates.mjs` to accept dependency-declared agents
+
+**Context:** The validator currently checks that agents referenced in pipelines exist in `project/agents/`. After PR 2 removes those directories, pipelines will still reference agents (e.g., `coder`, `analyst`) that are now declared as dependencies. The validator must accept them.
+
+**Files:**
+- Modify: `scripts/validate-templates.mjs`
+
+**Step 1: Load dependency agents from metadata**
+
+In `validateTemplate(name)`, after the `meta` parse block (around line 62), add:
+
+```js
+const dependencyAgents = new Set([
+  ...(meta.dependencies?.agents?.required ?? []),
+  ...(meta.dependencies?.agents?.recommended ?? []),
+]);
+```
+
+**Step 2: Update pipeline agent check**
+
+Find the pipeline check (around line 114):
+```js
+for (const a of agents) {
+  if (!agentNames.has(a)) errors.push(`${rel}: agent "${a}" not found in project/agents/`);
+}
+```
+
+Replace with:
+```js
+for (const a of agents) {
+  if (!agentNames.has(a) && !dependencyAgents.has(a)) {
+    errors.push(`${rel}: agent "${a}" not found in project/agents/ or declared in dependencies`);
+  }
+}
+```
+
+**Step 3: Run validator to confirm baseline still passes**
+
+```bash
+node scripts/validate-templates.mjs
+```
+Expected: `All templates valid.` (templates still have embedded files at this point)
+
+**Step 4: Commit**
+
+```bash
+git add scripts/validate-templates.mjs
+git commit -m "fix(validate): accept dependency-declared agents in pipeline checks"
+```
+
+---
+
+### Task 15: Update `templates/software` metadata + remove embedded files
 
 **Files:**
 - Modify: `templates/software/metadata.json`
@@ -612,7 +664,7 @@ git commit -m "feat(templates): software declares dependencies, removes embedded
 
 ---
 
-### Task 15: Update `templates/software-full` metadata + remove embedded files
+### Task 16: Update `templates/software-full` metadata + remove embedded files
 
 **Files:**
 - Modify: `templates/software-full/metadata.json`
@@ -674,7 +726,7 @@ git commit -m "feat(templates): software-full declares dependencies, removes emb
 
 ---
 
-### Task 16: Update `templates/content` metadata + remove embedded files
+### Task 17: Update `templates/content` metadata + remove embedded files
 
 **Files:**
 - Modify: `templates/content/metadata.json`
@@ -723,7 +775,7 @@ git commit -m "feat(templates): content declares dependencies, removes embedded 
 
 ---
 
-### Task 17: Update `templates/document-analysis` metadata + remove embedded files
+### Task 18: Update `templates/document-analysis` metadata + remove embedded files
 
 **Files:**
 - Modify: `templates/document-analysis/metadata.json`
@@ -772,7 +824,7 @@ git commit -m "feat(templates): document-analysis declares dependencies, removes
 
 ---
 
-### Task 18: Regenerate index.json and open PR 2
+### Task 19: Regenerate index.json and open PR 2
 
 **Step 1: Regenerate**
 
