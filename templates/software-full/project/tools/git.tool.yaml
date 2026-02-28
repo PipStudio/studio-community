@@ -4,11 +4,11 @@ version: 1
 
 commands:
   - name: git-status
-    description: Show working tree status
+    description: Show working tree status and current branch
     parameters: {}
     execute:
       type: shell
-      command: git status --porcelain
+      command: git status
       parse_output: text
 
   - name: git-diff
