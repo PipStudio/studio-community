@@ -1,7 +1,72 @@
 {
-  "generated_at": "2026-02-28T20:40:21.713Z",
+  "generated_at": "2026-02-28T22:39:43.062Z",
   "version": "1",
   "packages": [
+    {
+      "name": "git",
+      "type": "tool",
+      "version": "1.0.0",
+      "description": "Git version control operations: status, diff, checkout, commit, push, PR/MR creation",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "git",
+        "vcs",
+        "github",
+        "gitlab"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "repo-manager",
+      "type": "tool",
+      "version": "1.0.0",
+      "description": "Read, write, list, and patch files in the workspace",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "files",
+        "workspace",
+        "builtin"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "search",
+      "type": "tool",
+      "version": "1.0.0",
+      "description": "Search the codebase by content pattern or file name",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "search",
+        "codebase",
+        "builtin"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "shell",
+      "type": "tool",
+      "version": "1.0.0",
+      "description": "Execute shell commands in the workspace",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "shell",
+        "commands",
+        "builtin"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
     {
       "name": "content",
       "type": "template",
@@ -15,7 +80,8 @@
         "research"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "document-analysis",
@@ -30,7 +96,8 @@
         "extraction"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "software",
@@ -45,12 +112,13 @@
         "development"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "software-full",
       "type": "template",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "description": "Software development (full pipeline with QA review)",
       "author": "studio-core",
       "license": "MIT",
@@ -61,7 +129,8 @@
         "qa"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "linear",
@@ -78,7 +147,8 @@
         "triggers"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "slack",
@@ -94,7 +164,8 @@
         "alerts"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "webhook",
@@ -111,7 +182,121 @@
         "generic"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "analyst",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Senior software analyst — reads code, analyzes requests, produces implementation plans",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "software",
+        "analysis",
+        "planning"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "coder",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Expert software developer agent — implements changes using repo-manager, shell, and search tools",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "software",
+        "code",
+        "development"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "publisher",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Git workflow specialist — creates branch, commits, pushes, and opens PR/MR",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "git",
+        "github",
+        "gitlab",
+        "publish"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "reviewer",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Strict QA engineer — verifies implementation against acceptance criteria, returns approved or rejected",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "qa",
+        "review",
+        "testing"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "writer",
+      "type": "agent",
+      "version": "1.0.0",
+      "description": "Expert content writer — researches topics and creates high-quality structured content",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "content",
+        "writing",
+        "research"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "code-conventions",
+      "type": "skill",
+      "version": "1.0.0",
+      "description": "Coding conventions: file organization, TypeScript patterns, testing, error handling",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "conventions",
+        "typescript",
+        "testing"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
+    },
+    {
+      "name": "git-workflow",
+      "type": "skill",
+      "version": "1.0.0",
+      "description": "Git branching, conventional commits, and PR conventions",
+      "author": "studio-core",
+      "license": "MIT",
+      "tags": [
+        "git",
+        "commits",
+        "workflow"
+      ],
+      "studio_version": ">=0.2.0",
+      "downloads": 0,
+      "dependencies": {}
     }
   ]
 }
