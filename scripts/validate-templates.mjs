@@ -1,4 +1,4 @@
-import { readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -57,6 +57,13 @@ async function validateTemplate(name) {
   }
   for (const field of REQUIRED_META_FIELDS) {
     if (!meta[field]) errors.push(`metadata.json: missing required field "${field}"`);
+  }
+
+  try {
+    await stat(projectDir);
+  } catch {
+    errors.push('project/: directory not found');
+    return errors;
   }
 
   // --- Collect cross-ref sets from the template's own project/ ---
@@ -132,7 +139,13 @@ async function validateTemplate(name) {
   const skillFiles = await ls(join(projectDir, 'skills'));
   for (const f of skillFiles) {
     if (!f.endsWith('.skill.md')) continue;
-    const content = await readFile(join(projectDir, 'skills', f), 'utf-8');
+    let content;
+    try {
+      content = await readFile(join(projectDir, 'skills', f), 'utf-8');
+    } catch (e) {
+      errors.push(`project/skills/${f}: cannot read — ${e.message}`);
+      continue;
+    }
     if (!content.trim()) errors.push(`project/skills/${f}: skill is empty`);
   }
 
