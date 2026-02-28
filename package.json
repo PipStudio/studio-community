@@ -1,0 +1,10 @@
+{
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-templates.mjs",
+    "generate-index": "node scripts/generate-index.mjs"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
