@@ -1,0 +1,10 @@
+{
+  "name": "publisher",
+  "version": "1.0.0",
+  "description": "Git workflow specialist — creates branch, commits, pushes, and opens PR/MR",
+  "author": "studio-core",
+  "license": "MIT",
+  "tags": ["git", "github", "gitlab", "publish"],
+  "type": "agent",
+  "studio_version": ">=0.2.0"
+}
