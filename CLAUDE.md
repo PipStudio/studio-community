@@ -23,9 +23,11 @@ studio-community/
 ├── plugins/
 ├── skills/
 ├── scripts/
-│   └── generate-index.mjs  ← régénère index.json depuis tous les metadata.json
+│   ├── generate-index.mjs  ← régénère index.json depuis tous les metadata.json
+│   └── validate-templates.mjs  ← valide les templates (syntaxe YAML, metadata, refs croisées)
 └── .github/workflows/
-    └── generate-index.yml  ← CI : régénère index.json sur merge si metadata.json changé
+    ├── generate-index.yml  ← CI : régénère index.json sur merge si metadata.json changé
+    └── validate-templates.yml  ← CI : valide les templates modifiés sur les PRs
 ```
 
 ## Types de packages
@@ -66,6 +68,9 @@ Les types `template` et `plugin` ont un répertoire comme payload (pas un fichie
 ```bash
 # Régénérer index.json localement (après avoir ajouté/modifié un package)
 node scripts/generate-index.mjs
+
+# Valider les templates modifiés (ou tous si pas de diff git)
+node scripts/validate-templates.mjs
 
 # Valider un package avant de soumettre
 studio validate tool tools/my-tool/my-tool.tool.yaml
@@ -128,3 +133,17 @@ gh pr create --title "[integration] slack v1.0.0" --body "..."
 4. **Templates = répertoire `project/`**, pas un fichier unique. La structure interne doit suivre la structure `.studio/` standard : `pipelines/`, `agents/`, `contracts/`, `tools/`, `inputs/`.
 
 5. **`studio_version`** — utiliser le format `>=X.Y.Z` pour la compatibilité minimale.
+
+## CI
+
+| Workflow | Déclencheur | Rôle |
+|----------|-------------|------|
+| `generate-index.yml` | push sur `main` si `metadata.json` changé | Régénère `index.json` |
+| `validate-templates.yml` | PR vers `main` si `templates/**` changé | Valide metadata, syntaxe YAML, et refs croisées des templates modifiés |
+
+La validation de template couvre :
+- **metadata.json** — champs requis (`name`, `version`, `description`, `author`, `license`, `type`)
+- **Syntaxe YAML** — tous les fichiers `.yaml` dans `project/`
+- **Pipelines** — `stages` array requis ; agents et contracts référencés doivent exister dans `project/`
+- **Agents** — tools référencés doivent être des builtins (`repo_manager-*`, `shell-*`, `search-*`, `patch-*`, `git-*`) ou définis dans `project/tools/`
+- **Skills** — contenu non vide
