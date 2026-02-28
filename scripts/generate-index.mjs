@@ -33,6 +33,7 @@ for (const type of TYPES) {
       tags: meta.tags ?? [],
       studio_version: meta.studio_version ?? null,
       downloads: meta.downloads ?? 0,
+      dependencies: meta.dependencies ?? {},
     });
   }
 }

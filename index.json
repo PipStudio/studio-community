@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-28T22:36:47.815Z",
+  "generated_at": "2026-02-28T22:39:43.062Z",
   "version": "1",
   "packages": [
     {
@@ -16,7 +16,8 @@
         "gitlab"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "repo-manager",
@@ -31,7 +32,8 @@
         "builtin"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "search",
@@ -46,7 +48,8 @@
         "builtin"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "shell",
@@ -61,7 +64,8 @@
         "builtin"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "content",
@@ -76,7 +80,8 @@
         "research"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "document-analysis",
@@ -91,7 +96,8 @@
         "extraction"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "software",
@@ -106,7 +112,8 @@
         "development"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "software-full",
@@ -122,7 +129,8 @@
         "qa"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "linear",
@@ -139,7 +147,8 @@
         "triggers"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "slack",
@@ -155,7 +164,8 @@
         "alerts"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "webhook",
@@ -172,7 +182,8 @@
         "generic"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "analyst",
@@ -187,7 +198,8 @@
         "planning"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "coder",
@@ -202,7 +214,8 @@
         "development"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "publisher",
@@ -218,7 +231,8 @@
         "publish"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "reviewer",
@@ -233,7 +247,8 @@
         "testing"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "writer",
@@ -248,7 +263,8 @@
         "research"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "code-conventions",
@@ -263,7 +279,8 @@
         "testing"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     },
     {
       "name": "git-workflow",
@@ -278,7 +295,8 @@
         "workflow"
       ],
       "studio_version": ">=0.2.0",
-      "downloads": 0
+      "downloads": 0,
+      "dependencies": {}
     }
   ]
 }
