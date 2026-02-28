@@ -1,0 +1,21 @@
+# Node
+node_modules/
+dist/
+*.log
+.env
+.DS_Store
+
+# Run logs (local, not versioned)
+.studio/runs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude
+.claude/settings.local.json
+
+# Worktrees
+.worktrees/
