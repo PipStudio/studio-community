@@ -1,23 +1,26 @@
 name: feature-builder
 description: Analyze a request, plan the implementation, generate code, and QA review
 version: 2
-
+on_pipeline_start:
+  - command: npm install --silent 2>&1 | tail -5
+    inject_as: install_output
+  - command: date +%Y%m%d-%H%M
+    inject_as: run_timestamp
 input_schema:
   type: structured
   fields:
     - name: brief_summary
       type: text
       required: true
-      prompt: "Brief summary"
+      prompt: Brief summary
     - name: target_page
       type: text
       required: false
-      prompt: "Target file or page (optional)"
+      prompt: Target file or page (optional)
     - name: acceptance_criteria
       type: array
       items: text
-      prompt: "Acceptance criteria"
-
+      prompt: Acceptance criteria
 stages:
   - name: brief-analysis
     kind: analysis
@@ -28,7 +31,6 @@ stages:
     context:
       include:
         - input
-
   - name: implementation-plan
     kind: planning
     agent: analyst
@@ -39,8 +41,7 @@ stages:
       include:
         - input
         - previous_stage_output
-        - previous_stage_tool_results
-
+        - all_stage_tool_results
   - group: implementation-review
     max_iterations: 3
     stages:
@@ -56,10 +57,9 @@ stages:
             - all_stage_outputs
             - all_stage_tool_results
             - group_feedback
-
       - name: qa-review
         kind: qa
-        agent: analyst
+        agent: reviewer
         contract: qa-review
         ralph:
           max_attempts: 3
@@ -68,3 +68,13 @@ stages:
             - input
             - all_stage_outputs
             - group_feedback
+  - name: publish-changes
+    kind: publish
+    agent: publisher
+    contract: publish-changes
+    ralph:
+      max_attempts: 3
+    context:
+      include:
+        - input
+        - all_stage_outputs
