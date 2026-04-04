@@ -1,6 +1,4 @@
 name: coder
-provider: anthropic
-model: claude-sonnet-4-6
 tools:
   - repo_manager-read_file
   - repo_manager-apply_patch

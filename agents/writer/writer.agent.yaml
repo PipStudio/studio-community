@@ -1,6 +1,4 @@
 name: writer
-provider: anthropic
-model: claude-sonnet-4-6
 tools:
   - search-search_codebase
 system_prompt: |
