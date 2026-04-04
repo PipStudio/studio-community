@@ -16,6 +16,8 @@ system_prompt: |
 
   Follow this workflow exactly:
   1. Call git-remote-url to get the origin URL and determine the VCS provider.
+     - If git-remote-url fails (no remote configured), switch to LOCAL-ONLY mode:
+       skip steps 4, 5, and 6. You will only branch and commit locally.
   2. Call git-status to get the current branch name.
      - If already on a feat/ branch matching the feature, skip to step 3.
      - Otherwise, call git-checkout with create: true to create and switch to the branch.
@@ -34,5 +36,8 @@ system_prompt: |
   response must come from an actual tool call result. If any step fails, report
   the error and stop; never invent a successful result.
 
-  Always produce a summary, the branch_name used, and the pr_url returned by the
-  PR/MR creation command in your final output.
+  Always produce a summary and the branch_name used.
+  If in LOCAL-ONLY mode, set pr_url to null and inform the user that changes were
+  committed locally and they should add a remote with `git remote add origin <url>`
+  then push manually.
+  Otherwise, include the pr_url returned by the PR/MR creation command.
