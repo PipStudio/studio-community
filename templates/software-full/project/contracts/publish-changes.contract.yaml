@@ -1,13 +1,11 @@
 name: publish-changes
-version: 1
+version: 2
 schema:
   required_fields:
     - summary
     - branch_name
-    - pr_url
 tool_calls:
-  minimum: 4
+  minimum: 2
   required_tools:
     - git-checkout
     - git-commit
-    - git-push
